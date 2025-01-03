@@ -1,7 +1,7 @@
 ﻿version: "3.8"
 
 services:
-  atcantarctic:
+  app:
     image: mcr.microsoft.com/dotnet/sdk:6.0
     container_name: atcantarctic
     ports:
