@@ -10,7 +10,8 @@ services:
     volumes:
       - .:/app
     working_dir: /app
-    command: dotnet publish
+    command: dotnet exec bin/Debug/net6.0/publish/AtcAntarctic.dll
+  #    command: dotnet publish
 #    dotnet exec bin/Debug/net6.0/publish/AtcAntarctic.dll  
   #    command: dotnet run
 #    command: dotnet watch run
