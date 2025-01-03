@@ -29,7 +29,7 @@ services:
     networks:
       - app-network
     depends_on:
-      - atcantarctic   
+      - app   
 networks:
   app-network:
     driver: bridge
