@@ -4,8 +4,6 @@ services:
   atcantarctic:
     image: mcr.microsoft.com/dotnet/sdk:6.0
     container_name: atcantarctic
-    environment:
-      - ASPNETCORE_URLS=http://+:5174
     ports:
       - "5174:5174"
     volumes:
