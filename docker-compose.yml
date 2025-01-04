@@ -2,7 +2,7 @@
 
 services:
   app:
-    image: mcr.microsoft.com/dotnet/aspnet:6.0
+    image: mcr.microsoft.com/dotnet/sdk:6.0
     container_name: atcantarctic
     ports:
       - "5174:5174"
