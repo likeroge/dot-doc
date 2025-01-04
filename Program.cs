@@ -27,7 +27,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options
 
 builder.Services.AddScoped<VehicleRepo>();
 
-builder.WebHost.ConfigureKestrel(options => options.Listen(IPAddress.Any, 5174));
+// builder.WebHost.ConfigureKestrel(options => options.Listen(IPAddress.Any, 5174));
 
 var app = builder.Build();
 
