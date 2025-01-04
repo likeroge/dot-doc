@@ -40,10 +40,4 @@ app.MapControllers();
 
 app.MapRazorPages();
 
-app.Use((httpContext, next) =>
-{
-    httpContext.Request.PathBase = "/";
-    return next();
-});
-
 app.Run();
