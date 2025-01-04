@@ -1,8 +1,10 @@
+using System.Net;
 using AtcAntarctic.Data;
 using AtcAntarctic.Repos;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -25,7 +27,10 @@ builder.Services.AddDbContext<AppDbContext>(options => options
 
 builder.Services.AddScoped<VehicleRepo>();
 
+builder.WebHost.ConfigureKestrel(options => options.Listen(IPAddress.Any, 5174));
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
