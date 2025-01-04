@@ -5,18 +5,15 @@ services:
     image: mcr.microsoft.com/dotnet/sdk:6.0
     container_name: atcantarctic
     ports:
-      - "5174:80"
       - "5000:5000"
+    environment:
+      - ASPNETCORE_URLS=http://*:5000
     networks:
       - app-network
     volumes:
       - .:/app
     working_dir: /app
-#    command: dotnet exec bin/Debug/net6.0/publish/AtcAntarctic.dll
-  #    command: dotnet publish
-#    dotnet exec bin/Debug/net6.0/publish/AtcAntarctic.dll  
-    command: dotnet run
-#    command: dotnet watch run
+    command: bash -c "dotnet publish -c Release -o ./publish && dotnet ./publish/AtcAntarctic.dll"
   
   nginx-dotnet:
     image: nginx:alpine
