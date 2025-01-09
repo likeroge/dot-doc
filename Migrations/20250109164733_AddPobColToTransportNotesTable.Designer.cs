@@ -3,6 +3,7 @@ using System;
 using AtcAntarctic.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtcAntarctic.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250109164733_AddPobColToTransportNotesTable")]
+    partial class AddPobColToTransportNotesTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.21");
@@ -43,13 +45,13 @@ namespace AtcAntarctic.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("Ata")
+                    b.Property<DateTime>("Ata")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("Atd")
+                    b.Property<DateTime>("Atd")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("Date")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("FromId")
@@ -59,6 +61,7 @@ namespace AtcAntarctic.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Rmk")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("ToId")

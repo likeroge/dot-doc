@@ -9,8 +9,10 @@ public class TransportNote : BaseModel
     public int ToId { get; set; }
     [Required]
     public int  VehicleId { get; set; }
-    public DateTime Atd { get; set; } 
-    public DateTime Ata { get; set; } 
-    public string Rmk { get; set; }
-    public DateTime Date { get; set; } = DateTime.Now;
+    public DateTime? Atd { get; set; }
+    public DateTime? Ata { get; set; }
+    public string? Rmk { get; set; }
+    public DateTime? Date { get; set; } = DateTime.Now;
+    
+    public short Pob { get; set; }
 }

@@ -4,8 +4,9 @@ public record CreateTransportNoteDto (
         int FromId,
         int ToId,
         int  VehicleId,
-        DateTime Atd,
-        DateTime Ata,
-        DateTime Date,
-        string Rmk
+        DateTime? Atd,
+        DateTime? Ata,
+        DateTime? Date,
+        string? Rmk,
+        short Pob
     );

@@ -32,17 +32,19 @@
             type: +formData.get('type')
         }
         console.log(data);
-        fetch('/api/Vehicle', {
+        console.log();
+        fetch(location.origin + '/api/Vehicle', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
-        }).then(response => {
+        })
+        .then(response => {
             if (response.ok) {
-                window.location.href = '/Vehicles/All';
+                window.location.href =location.origin + '/Vehicles/All';
             }
         })
     })
-    
+
 </script>

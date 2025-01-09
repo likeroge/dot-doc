@@ -51,7 +51,8 @@ public class TransportNotesRepo : ICrud<TransportNote>
             Atd = dto.Atd,
             Ata = dto.Ata,
             Rmk = dto.Rmk,
-            Date = dto.Date
+            Date = dto.Date,
+            Pob = dto.Pob
         };
         _context.TransportNotes.Add(transportNote);
         _context.SaveChanges();
