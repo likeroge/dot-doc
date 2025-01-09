@@ -21,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include=".github\worflows\ci-cd-pipeline.yml" />
+      <Content Include=".github\worklows\ci-cd-pipeline.yml" />
     </ItemGroup>
 
 </Project>
