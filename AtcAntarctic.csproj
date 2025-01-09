@@ -20,4 +20,8 @@
       <_ContentIncludedByDefault Remove="Pages\Test\Test.cshtml" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include=".github\worflows\ci-cd-pipeline.yml" />
+    </ItemGroup>
+
 </Project>

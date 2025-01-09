@@ -1,0 +1,48 @@
+@page
+@model AtcAntarctic.Pages.Vehicles.Add
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+<div>
+    <h1>Добавить транспорт</h1>
+    <form id="myForm">
+        <select name="type">
+            @* @foreach (var vehicleType in Model.VehicleTypes) *@
+            @{
+           foreach (var (vehicleType,idx)  in  Model.VehicleTypes.Select((el,idx)=>(el,idx)))
+            {
+                <option value="@idx">@vehicleType</option>
+            }
+            } 
+
+        </select>
+        <input type="text" name="name" placeholder="Имя транспорта"/>
+        <input type="submit" value="Добавить" />
+    </form>
+</div>
+
+<script>
+    document.getElementById('myForm').addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = {
+            name: formData.get('name'),
+            type: +formData.get('type')
+        }
+        console.log(data);
+        fetch('/api/Vehicle', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => {
+            if (response.ok) {
+                window.location.href = '/Vehicles/All';
+            }
+        })
+    })
+    
+</script>

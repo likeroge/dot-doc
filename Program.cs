@@ -14,20 +14,20 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-IConfiguration configuration = new ConfigurationManager();
-var configurationSection = configuration.GetSection("Test").Value;
+var configurationSection = builder.Configuration["Test"];
+Console.WriteLine(configurationSection);
 
 //Http client
 builder.Services
-    .AddHttpClient("MyApiClient",client=> client
-        .BaseAddress = new Uri(configuration.GetSection("BaseUrl").Value));
+    .AddHttpClient("MyApiClient", client => client
+        .BaseAddress = new Uri(builder.Configuration["BaseUrl"]));
 
 builder.Services.AddDbContext<AppDbContext>(options => options
     .UseSqlite("Data Source=AtcAntarctic.db"));
 
 builder.Services.AddScoped<VehicleRepo>();
-
-// builder.WebHost.ConfigureKestrel(options => options.Listen(IPAddress.Any, 5174));
+builder.Services.AddScoped<PlacesRepo>();
+builder.Services.AddScoped<TransportNotesRepo>();
 
 var app = builder.Build();
 

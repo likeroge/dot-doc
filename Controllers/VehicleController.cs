@@ -37,12 +37,13 @@ public class VehicleController
     [HttpPost]
     public Vehicle? Create(CreateVehicleDto dto)
     {
+        Console.WriteLine($"This is request body {dto}");
         return _repo.Create(dto);
     }
     
-    [HttpDelete]
-    public Vehicle? Delete(Vehicle entity)
+    [HttpDelete("{id:int}")]
+    public Vehicle? Delete(int id)
     {
-        return _repo.Delete(entity);
+        return _repo.Delete(id);
     }
 }

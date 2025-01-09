@@ -24,9 +24,9 @@ public class VehicleRepo : ICrud<Vehicle>
         return _context.Vehicles.Find(id);
     }
 
-    public Vehicle? Delete(Vehicle entity)
+    public Vehicle? Delete(int id)
     {
-        var vehicle = _context.Vehicles.Find(entity.Id);
+        var vehicle = _context.Vehicles.Find(id);
         if (vehicle == null) return null;
         _context.Vehicles.Remove(vehicle);
         _context.SaveChanges();

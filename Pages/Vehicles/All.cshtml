@@ -2,9 +2,21 @@
 @model AtcAntarctic.Pages.Vehicles.All
 
 @{
-    Layout = null;
+    Layout = "Shared/_Layout";
 }
 
 <div>
     <h1>All Vehicles</h1>
+
+    @if (Model.Vehicles?.Count == 0 || Model.Vehicles == null)
+    {
+        <p>No Vehicles</p>
+    }
+    else
+    {
+        @foreach (var vehicle in Model.Vehicles)
+        {
+            <p>@vehicle.Name</p>
+        }
+    }
 </div>

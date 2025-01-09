@@ -6,5 +6,5 @@ public interface ICrud<T>
     public T? Get(int id);
     // public void Create(T entity);
     // public void Update(T entity);
-    public T? Delete(T entity);
+    public T? Delete(int sid);
 }
