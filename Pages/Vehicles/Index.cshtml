@@ -1,0 +1,196 @@
+@page
+@model AtcAntarctic.Pages.Vehicles.Index
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+<div class="vehicle-list_container">
+    <h1 class="vehicle-list_header">Транспорт</h1>
+    <div class="btn_group">
+        <a href="/">
+            <button class="link-button">Назад</button>
+        </a>
+        <a href="/vehicles/add">
+            <button class="link-button">Добавить</button>
+        </a>
+    </div>
+    
+    
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Название</th>
+                <th>Тип</th>
+                <th>Удалить</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var vehicle in Model.Vehicles)
+            {
+                <tr>
+                    <td>@vehicle.Id</td>
+                    <td>@vehicle.Name</td>
+                    <td>@vehicle.Type</td>
+                    <td class="rm_btn">
+                        <button data-id="@vehicle.Id" class="rm-vehicle_btn">X</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    
+    </table>
+</div>
+
+<style>
+    .btn_group{
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .vehicle-list_header{
+        text-align: center;
+    }
+    .vehicle-list_container{
+        display: flex;
+        flex-direction: column;
+    }
+    /* Стиль таблицы */
+    table {
+        width: 100%;
+        border-collapse: collapse; /* Слияние границ */
+        margin: 20px 0;
+        font-family: Arial, sans-serif; /* Шрифт */
+    }
+
+    /* Стиль заголовков таблицы */
+    th {
+        background-color: #4CAF50; /* Зеленый фон */
+        color: white; /* Белый цвет текста */
+        padding: 12px 15px; /* Отступы внутри ячеек */
+        text-align: left; /* Выравнивание текста по левому краю */
+        font-size: 16px; /* Размер шрифта */
+        border: 1px solid #ddd; /* Граница вокруг ячеек */
+      
+    }
+
+    /* Стиль ячеек таблицы */
+    td {
+        padding: 12px 15px; /* Отступы внутри ячеек */
+        text-align: left; /* Выравнивание текста по левому краю */
+        border: 1px solid #ddd; /* Граница ячеек */
+    }
+
+    /* Эффект при наведении на строки */
+    tr:hover {
+        background-color: #f5f5f5; /* Цвет фона при наведении */
+    }
+
+    /* Стиль для четных строк */
+    tr:nth-child(even) {
+        background-color: #f9f9f9; /* Легкий серый фон для четных строк */
+    }
+
+    /* Стиль для нечетных строк */
+    tr:nth-child(odd) {
+        background-color: #ffffff; /* Белый фон для нечетных строк */
+    }
+
+    /* Стиль для ячеек при выделении */
+    td:hover {
+        background-color: #f1f1f1; /* Светло-серый фон для ячеек при наведении */
+    }
+    button {
+        background-color: #ff4d4d; /* Красный фон для кнопки */
+        color: white; /* Белый текст */
+        border: none; /* Без границы */
+        border-radius: 5px; /* Скругленные углы */
+        padding: 8px 15px; /* Отступы внутри кнопки */
+        font-size: 16px; /* Размер шрифта */
+        cursor: pointer; /* Курсор в виде руки при наведении */
+        transition: background-color 0.3s ease, transform 0.2s ease; /* Плавное изменение фона и анимация */
+    }
+
+    /* Эффект при наведении на кнопку */
+    button:hover {
+        background-color: #ff1a1a; /* Темно-красный фон */
+        transform: scale(1.1); /* Увеличение кнопки при наведении */
+    }
+
+    /* Эффект при удержании кнопки */
+    button:active {
+        background-color: #e60000; /* Еще более темный красный фон */
+        transform: scale(0.95); /* Немного уменьшить кнопку при клике */
+    }
+
+    /* Стиль для кнопки, когда она отключена */
+    button:disabled {
+        background-color: #ccc; /* Серый фон */
+        cursor: not-allowed; /* Курсор в виде запрета */
+    }
+    .rm_btn{
+        display: flex;
+        justify-content: center;
+    }
+
+    .link-button {
+        background-color: #4CAF50; /* Зеленый фон */
+        color: white; /* Белый текст */
+        border: none; /* Без границы */
+        border-radius: 8px; /* Скругленные углы */
+        padding: 12px 24px; /* Отступы внутри кнопки */
+        font-size: 16px; /* Размер шрифта */
+        font-weight: bold; /* Жирный шрифт */
+        cursor: pointer; /* Курсор в виде руки */
+        transition: background-color 0.3s ease, transform 0.2s ease; /* Плавный переход при наведении */
+        text-align: center; /* Выравнивание текста по центру */
+        display: inline-block; /* Сделать кнопку в виде инлайн-блока */
+    }
+
+    /* Эффект при наведении */
+    .link-button:hover {
+        background-color: #45a049; /* Темно-зеленый фон */
+        transform: scale(1.05); /* Легкое увеличение кнопки */
+    }
+
+    /* Эффект при удержании кнопки */
+    .link-button:active {
+        background-color: #388e3c; /* Еще более темный зеленый при нажатии */
+        transform: scale(0.98); /* Немного уменьшается кнопка при клике */
+    }
+
+    /* Эффект фокуса (при использовании клавиши Tab) */
+    .link-button:focus {
+        outline: none; /* Убираем стандартную обводку */
+        box-shadow: 0 0 5px rgba(72, 200, 98, 0.8); /* Добавляем зеленую тень */
+    }
+</style>
+
+<script>
+    const rmBtns = document.getElementsByClassName("rm-vehicle_btn")
+
+    for ( let rmBtn of rmBtns){
+        rmBtn.addEventListener("click", async () => {
+            rmBtn.disabled = true;
+            console.log(rmBtn.getAttribute('data-id'));
+            try {
+                const response = await fetch(`/api/Vehicle/${rmBtn.getAttribute('data-id')}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                })
+                location.reload();
+            }catch (e) {
+                console.warn(e)
+            }
+            
+        })
+    }
+   
+
+</script>

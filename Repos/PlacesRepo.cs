@@ -20,12 +20,12 @@ public class PlacesRepo : ICrud<Place>
        return _context.Places.ToList();
     }
 
-    public Place? Get(int id)
+    public Place? Get(long id)
     {
         return _context.Places.Find(id);
     }
 
-    public Place? Delete(int id)
+    public Place? Delete(long id)
     {
         var place = _context.Places.Find(id);
         return place == null ? null : _context.Places.Remove(place).Entity;

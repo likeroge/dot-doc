@@ -44,6 +44,7 @@ public class VehicleController
     [HttpDelete("{id:int}")]
     public Vehicle? Delete(int id)
     {
+        Console.WriteLine($"This is request body {id}");
         return _repo.Delete(id);
     }
 }

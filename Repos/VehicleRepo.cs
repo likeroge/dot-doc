@@ -2,6 +2,7 @@ using AtcAntarctic.Data;
 using AtcAntarctic.Models;
 using AtcAntarctic.Models.Dto;
 using AtcAntarctic.Repos.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace AtcAntarctic.Repos;
 
@@ -19,12 +20,12 @@ public class VehicleRepo : ICrud<Vehicle>
        return _context.Vehicles.ToList();
     }
 
-    public Vehicle? Get(int id)
+    public Vehicle? Get(long id)
     {
         return _context.Vehicles.Find(id);
     }
 
-    public Vehicle? Delete(int id)
+    public Vehicle? Delete(long id)
     {
         var vehicle = _context.Vehicles.Find(id);
         if (vehicle == null) return null;

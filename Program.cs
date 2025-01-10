@@ -5,6 +5,13 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    });
+});
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -39,10 +46,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseAuthorization();
+app.UseStaticFiles();
 
+app.UseAuthorization();
 app.MapControllers();
 
 app.MapRazorPages();
+
+app.UseCors("AllowAll");
 
 app.Run();

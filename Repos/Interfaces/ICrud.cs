@@ -3,8 +3,8 @@ namespace AtcAntarctic.Repos.Interfaces;
 public interface ICrud<T>
 {
     public IEnumerable<T> GetAll();
-    public T? Get(int id);
+    public T? Get(long id);
     // public void Create(T entity);
     // public void Update(T entity);
-    public T? Delete(int sid);
+    public T? Delete(long sid);
 }

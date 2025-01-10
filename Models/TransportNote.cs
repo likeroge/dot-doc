@@ -11,6 +11,7 @@ public class TransportNote : BaseModel
     public int  VehicleId { get; set; }
     public DateTime? Atd { get; set; }
     public DateTime? Ata { get; set; }
+    [MaxLength(500)]
     public string? Rmk { get; set; }
     public DateTime? Date { get; set; } = DateTime.Now;
     

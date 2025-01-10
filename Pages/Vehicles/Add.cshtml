@@ -5,46 +5,138 @@
     Layout = "Shared/_Layout";
 }
 
-<div>
-    <h1>Добавить транспорт</h1>
-    <form id="myForm">
-        <select name="type">
-            @* @foreach (var vehicleType in Model.VehicleTypes) *@
-            @{
-           foreach (var (vehicleType,idx)  in  Model.VehicleTypes.Select((el,idx)=>(el,idx)))
-            {
-                <option value="@idx">@vehicleType</option>
-            }
-            } 
+<div class="add-vehicle_form_container">
+    <form id="add-vehicle_form">
+        <h2>Добавить транспортное средство</h2>
 
-        </select>
-        <input type="text" name="name" placeholder="Имя транспорта"/>
-        <input type="submit" value="Добавить" />
+        <div class="form-group">
+            <label for="vehicleType">Тип транспорта</label>
+            <select name="vehicleType" id="vehicleType">
+                @foreach (var (val, idx) in Model.VehicleTypes.Select((val, idx) => (val, idx)))
+                {
+                    <option value="@idx">@val</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="vehicleName">Название транспортного средства</label>
+            <input type="text" name="vehicleName" id="vehicleName" placeholder="Введите название">
+        </div>
+
+        <button type="submit">Добавить</button>
     </form>
 </div>
 
-<script>
-    document.getElementById('myForm').addEventListener("submit", (e) => {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const data = {
-            name: formData.get('name'),
-            type: +formData.get('type')
-        }
-        console.log(data);
-        console.log();
-        fetch(location.origin + '/api/Vehicle', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => {
-            if (response.ok) {
-                window.location.href =location.origin + '/Vehicles/All';
-            }
-        })
-    })
+<style>
+    .add-vehicle_form_container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #add-vehicle_form {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+    }
 
+    /* Стиль для заголовка формы */
+    #add-vehicle_form h2 {
+        text-align: center;
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    /* Стиль для контейнера с полями формы */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    /* Стиль для меток */
+    label {
+        display: block;
+        font-weight: bold;
+        color: #555;
+        margin-bottom: 5px;
+    }
+
+    /* Стиль для элемента select */
+    select, input[type="text"] {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+        box-sizing: border-box;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Стиль для фокуса на элементах */
+    select:focus, input[type="text"]:focus {
+        border-color: #4CAF50;
+        background-color: #f1fdf2;
+        outline: none;
+    }
+
+    /* Стиль для кнопки */
+    button {
+        width: 100%;
+        padding: 12px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    /* Эффект наведения на кнопку */
+    button:hover {
+        background-color: #45a049;
+    }
+
+    /* Стиль для кнопки при неактивном состоянии */
+    button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+
+    /* Мелкие эффекты на выбор (для select) */
+    select option {
+        padding: 10px;
+    }
+</style>
+
+<script>
+    const form = document.getElementById('add-vehicle_form');
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const data = {
+            Type: +formData.get('vehicleType'),
+            Name: formData.get('vehicleName')
+        }
+
+        try {
+            console.log(data)
+            const response = await fetch('/api/vehicle', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            window.location.href = '/vehicles';
+        }catch (e) {
+            console.warn(e)
+        }
+
+        });
 </script>

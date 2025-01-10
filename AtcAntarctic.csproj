@@ -18,6 +18,15 @@
 
     <ItemGroup>
       <_ContentIncludedByDefault Remove="Pages\Test\Test.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Shared\_Layout.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\TransportNotes\Add.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\TransportNotes\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Vehicles\Add.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\_Host.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Counter.razor" />
+      <_ContentIncludedByDefault Remove="Pages\Shared\MainBlazorLayout.razor" />
+      <_ContentIncludedByDefault Remove="Pages\Vehicles\Add.razor" />
+      <_ContentIncludedByDefault Remove="Pages\Vehicles\Index.razor" />
     </ItemGroup>
 
     <ItemGroup>

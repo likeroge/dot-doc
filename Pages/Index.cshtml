@@ -2,10 +2,46 @@
 @model AtcAntarctic.Pages.Index
 
 @{
-    Layout = null;
+    Layout = "Shared/_Layout";
 }
-
 <div>
-    <h1>Index page</h1>
-    <h3>Hello world</h3>
+    <h1>Hello world</h1>
+    <a href="/Vehicles">
+    <button class="link-button">Весь транспорт</button>
+    </a>
 </div>
+
+<style>
+    /* Основной стиль для кнопки */
+    .link-button {
+        background-color: #4CAF50; /* Зеленый фон */
+        color: white; /* Белый текст */
+        border: none; /* Без границы */
+        border-radius: 8px; /* Скругленные углы */
+        padding: 12px 24px; /* Отступы внутри кнопки */
+        font-size: 16px; /* Размер шрифта */
+        font-weight: bold; /* Жирный шрифт */
+        cursor: pointer; /* Курсор в виде руки */
+        transition: background-color 0.3s ease, transform 0.2s ease; /* Плавный переход при наведении */
+        text-align: center; /* Выравнивание текста по центру */
+        display: inline-block; /* Сделать кнопку в виде инлайн-блока */
+    }
+
+    /* Эффект при наведении */
+    .link-button:hover {
+        background-color: #45a049; /* Темно-зеленый фон */
+        transform: scale(1.05); /* Легкое увеличение кнопки */
+    }
+
+    /* Эффект при удержании кнопки */
+    .link-button:active {
+        background-color: #388e3c; /* Еще более темный зеленый при нажатии */
+        transform: scale(0.98); /* Немного уменьшается кнопка при клике */
+    }
+
+    /* Эффект фокуса (при использовании клавиши Tab) */
+    .link-button:focus {
+        outline: none; /* Убираем стандартную обводку */
+        box-shadow: 0 0 5px rgba(72, 200, 98, 0.8); /* Добавляем зеленую тень */
+    }
+</style>

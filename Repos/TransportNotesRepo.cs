@@ -19,12 +19,12 @@ public class TransportNotesRepo : ICrud<TransportNote>
         return _context.TransportNotes.ToList();
     }
 
-    public TransportNote? Get(int id)
+    public TransportNote? Get(long id)
     {
         return _context.TransportNotes.Find(id);
     }
 
-    public TransportNote? Delete(int sid)
+    public TransportNote? Delete(long sid)
     {
         var transportNote = _context.TransportNotes.Find(sid);
         if (transportNote==null)
