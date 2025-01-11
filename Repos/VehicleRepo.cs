@@ -44,4 +44,9 @@ public class VehicleRepo : ICrud<Vehicle>
         _context.SaveChanges();
         return vehicle;
     }
+
+    public IEnumerable<VehicleType> GetVehicleTypes()
+    {
+        return Enum.GetValues<VehicleType>().ToList();
+    }
 }

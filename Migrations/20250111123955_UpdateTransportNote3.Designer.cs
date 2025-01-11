@@ -3,6 +3,7 @@ using System;
 using AtcAntarctic.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtcAntarctic.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250111123955_UpdateTransportNote3")]
+    partial class UpdateTransportNote3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.21");
@@ -65,7 +67,7 @@ namespace AtcAntarctic.Migrations
                     b.Property<long>("ToId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("VehicleId")
+                    b.Property<int>("VehicleId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -73,8 +75,6 @@ namespace AtcAntarctic.Migrations
                     b.HasIndex("FromId");
 
                     b.HasIndex("ToId");
-
-                    b.HasIndex("VehicleId");
 
                     b.ToTable("TransportNotes");
                 });
@@ -112,17 +112,9 @@ namespace AtcAntarctic.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AtcAntarctic.Models.Vehicle", "Vehicle")
-                        .WithMany()
-                        .HasForeignKey("VehicleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("From");
 
                     b.Navigation("To");
-
-                    b.Navigation("Vehicle");
                 });
 #pragma warning restore 612, 618
         }

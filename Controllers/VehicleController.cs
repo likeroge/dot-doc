@@ -47,4 +47,10 @@ public class VehicleController
         Console.WriteLine($"This is request body {id}");
         return _repo.Delete(id);
     }
+    
+    [HttpGet("vehicleTypes")]
+    public IEnumerable<VehicleType> GetVehicleTypes()
+    {
+        return _repo.GetVehicleTypes();
+    }
 }

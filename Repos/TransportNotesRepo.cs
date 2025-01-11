@@ -2,6 +2,7 @@ using AtcAntarctic.Data;
 using AtcAntarctic.Models;
 using AtcAntarctic.Models.Dto;
 using AtcAntarctic.Repos.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace AtcAntarctic.Repos;
 
@@ -16,7 +17,12 @@ public class TransportNotesRepo : ICrud<TransportNote>
 
     public IEnumerable<TransportNote> GetAll()
     {
-        return _context.TransportNotes.ToList();
+        return _context.TransportNotes
+            .Include(tn=>tn.Vehicle)
+            .Include(tn=>tn.From)
+            .Include(tn=>tn.To)
+            .ToList();
+        // return _context.TransportNotes.ToList();
     }
 
     public TransportNote? Get(long id)

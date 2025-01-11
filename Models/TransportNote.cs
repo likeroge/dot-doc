@@ -5,15 +5,20 @@ namespace AtcAntarctic.Models;
 
 public class TransportNote : BaseModel
 {
-    public int FromId { get; set; }
-    public int ToId { get; set; }
+    public long FromId { get; set; }
+    public long ToId { get; set; }
+
+    public Place? From { get; set; }
+    public Place? To { get; set; }
+
     [Required]
-    public int  VehicleId { get; set; }
+    public long  VehicleId { get; set; }
+
+    public Vehicle? Vehicle { get; set; }
     public DateTime? Atd { get; set; }
     public DateTime? Ata { get; set; }
     [MaxLength(500)]
     public string? Rmk { get; set; }
     public DateTime? Date { get; set; } = DateTime.Now;
-    
     public short Pob { get; set; }
 }

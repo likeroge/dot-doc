@@ -3,6 +3,7 @@ using System;
 using AtcAntarctic.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtcAntarctic.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250111113554_UpdateTransportNote")]
+    partial class UpdateTransportNote
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.21");
@@ -52,7 +54,10 @@ namespace AtcAntarctic.Migrations
                     b.Property<DateTime?>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("FromId")
+                    b.Property<int>("FromId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("FromId1")
                         .HasColumnType("INTEGER");
 
                     b.Property<short>("Pob")
@@ -62,19 +67,20 @@ namespace AtcAntarctic.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("ToId")
+                    b.Property<int>("ToId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("VehicleId")
+                    b.Property<long>("ToId1")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("VehicleId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FromId");
+                    b.HasIndex("FromId1");
 
-                    b.HasIndex("ToId");
-
-                    b.HasIndex("VehicleId");
+                    b.HasIndex("ToId1");
 
                     b.ToTable("TransportNotes");
                 });
@@ -102,27 +108,19 @@ namespace AtcAntarctic.Migrations
                 {
                     b.HasOne("AtcAntarctic.Models.Place", "From")
                         .WithMany()
-                        .HasForeignKey("FromId")
+                        .HasForeignKey("FromId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("AtcAntarctic.Models.Place", "To")
                         .WithMany()
-                        .HasForeignKey("ToId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AtcAntarctic.Models.Vehicle", "Vehicle")
-                        .WithMany()
-                        .HasForeignKey("VehicleId")
+                        .HasForeignKey("ToId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("From");
 
                     b.Navigation("To");
-
-                    b.Navigation("Vehicle");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,6 +3,7 @@ using System;
 using AtcAntarctic.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtcAntarctic.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250111124524_UpdateTransportNote4")]
+    partial class UpdateTransportNote4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.21");
@@ -65,7 +67,10 @@ namespace AtcAntarctic.Migrations
                     b.Property<long>("ToId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("VehicleId")
+                    b.Property<int>("VehicleId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("VehicleId1")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -74,7 +79,7 @@ namespace AtcAntarctic.Migrations
 
                     b.HasIndex("ToId");
 
-                    b.HasIndex("VehicleId");
+                    b.HasIndex("VehicleId1");
 
                     b.ToTable("TransportNotes");
                 });
@@ -114,7 +119,7 @@ namespace AtcAntarctic.Migrations
 
                     b.HasOne("AtcAntarctic.Models.Vehicle", "Vehicle")
                         .WithMany()
-                        .HasForeignKey("VehicleId")
+                        .HasForeignKey("VehicleId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
