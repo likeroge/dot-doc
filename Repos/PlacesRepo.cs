@@ -2,6 +2,7 @@ using AtcAntarctic.Data;
 using AtcAntarctic.Models;
 using AtcAntarctic.Models.Dto;
 using AtcAntarctic.Repos.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace AtcAntarctic.Repos;
 
@@ -15,9 +16,9 @@ public class PlacesRepo : ICrud<Place>
         _context = context;
     }
 
-    public IEnumerable<Place> GetAll()
+    public async Task<IEnumerable<Place>> GetAll()
     {
-       return _context.Places.ToList();
+       return await _context.Places.ToListAsync();
     }
 
     public Place? Get(long id)

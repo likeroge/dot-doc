@@ -19,9 +19,9 @@ public class PlacesController
     }
     
     [HttpGet]
-    public IEnumerable<Place> Get()
+    public async Task<IEnumerable<Place>> Get()
     {
-        return _repo.GetAll();
+        return await _repo.GetAll();
     }
     
     [HttpGet("{id}")]

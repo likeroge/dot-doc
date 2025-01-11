@@ -15,9 +15,10 @@ public class VehicleRepo : ICrud<Vehicle>
         _context = context;
     }
 
-    public IEnumerable<Vehicle> GetAll()
+    public async Task<IEnumerable<Vehicle>> GetAll()
     {
-       return _context.Vehicles.ToList();
+      return  await _context.Vehicles.ToListAsync();
+       // return _context.Vehicles.ToList();
     }
 
     public Vehicle? Get(long id)
@@ -34,14 +35,14 @@ public class VehicleRepo : ICrud<Vehicle>
         return vehicle;
     }
 
-    public Vehicle? Create(CreateVehicleDto dto) {
+    public async Task<Vehicle?> Create(CreateVehicleDto dto) {
         var vehicle = new Vehicle
         {
             Name = dto.Name,
             Type = dto.Type
         };
-        _context.Vehicles.Add(vehicle);
-        _context.SaveChanges();
+        await _context.Vehicles.AddAsync(vehicle);
+        await _context.SaveChangesAsync();
         return vehicle;
     }
 

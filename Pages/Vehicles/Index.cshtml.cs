@@ -15,8 +15,8 @@ public class Index : PageModel
         _vehicleRepo = repo;
     }
 
-    public void OnGet()
+    public async void OnGet()
     {
-        Vehicles = _vehicleRepo.GetAll();
+        Vehicles = await _vehicleRepo.GetAll();
     }
 }

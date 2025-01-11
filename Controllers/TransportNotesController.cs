@@ -20,9 +20,9 @@ public class TransportNotesController : ControllerBase
     }
     
     [HttpGet]
-    public IEnumerable<TransportNote> GetAll()
+    public async Task<IEnumerable<TransportNote>> GetAll()
     {
-        return _repo.GetAll();
+        return await _repo.GetAll();
     }
     
     [HttpGet("{id:int}")]

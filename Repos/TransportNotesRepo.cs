@@ -15,13 +15,13 @@ public class TransportNotesRepo : ICrud<TransportNote>
         _context = context;
     }
 
-    public IEnumerable<TransportNote> GetAll()
+    public async Task<IEnumerable<TransportNote>> GetAll()
     {
-        return _context.TransportNotes
+        return await _context.TransportNotes
             .Include(tn=>tn.Vehicle)
             .Include(tn=>tn.From)
             .Include(tn=>tn.To)
-            .ToList();
+            .ToListAsync();
         // return _context.TransportNotes.ToList();
     }
 

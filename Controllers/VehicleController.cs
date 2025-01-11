@@ -20,12 +20,12 @@ public class VehicleController
     }
     
     [HttpGet]
-    public IEnumerable<Vehicle> Get()
+    public async Task<IEnumerable<Vehicle>> Get()
     {
         var testValue = _configuration.GetSection("Test").Value;
         _logger.LogInformation(testValue);
         
-        return _repo.GetAll();
+        return await _repo.GetAll();
     }
     
     [HttpGet("{id:int}")]
@@ -35,10 +35,10 @@ public class VehicleController
     }
     
     [HttpPost]
-    public Vehicle? Create(CreateVehicleDto dto)
+    public async Task<Vehicle?> Create(CreateVehicleDto dto)
     {
         Console.WriteLine($"This is request body {dto}");
-        return _repo.Create(dto);
+        return await _repo.Create(dto);
     }
     
     [HttpDelete("{id:int}")]
