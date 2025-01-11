@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace AtcAntarctic.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+// [Route("api/[controller]")]
+[Route("api/transport-notes")]
 public class TransportNotesController : ControllerBase
 {
     private readonly TransportNotesRepo _repo;
