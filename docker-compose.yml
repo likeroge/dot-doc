@@ -17,7 +17,9 @@ services:
     command: bash -c "dotnet publish -c Release -o ./publish && dotnet ./publish/AtcAntarctic.dll"
 networks:
   antarctic-app:
-    driver: bridge
+    external: true
+#    driver: bridge
+
 #  nginx-dotnet:
 #    image: nginx:alpine
 #    container_name: nginx-dotnet
