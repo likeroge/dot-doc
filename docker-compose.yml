@@ -9,8 +9,8 @@ services:
     environment:
       - ASPNETCORE_URLS=http://*:5000
       - ASPNETCORE_ENVIRONMENT=Development
-#    networks:
-#      - app-network
+    networks:
+      - antarctic-app
     volumes:
       - .:/app
     working_dir: /app

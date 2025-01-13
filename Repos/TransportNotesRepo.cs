@@ -64,4 +64,24 @@ public class TransportNotesRepo : ICrud<TransportNote>
         _context.SaveChanges();
         return transportNote;
     }
+    
+    public TransportNote? Update(UpdateTransportNoteDto dto)
+    {
+        var transportNote = _context.TransportNotes.Find(dto.Id);
+        if (transportNote==null)
+        {
+            throw new Exception("TransportNote not exist");
+        }
+        transportNote.FromId = dto.FromId ?? transportNote.FromId;
+        transportNote.ToId = dto.ToId ?? transportNote.ToId ;
+        transportNote.VehicleId = dto.VehicleId?? transportNote.VehicleId;
+        transportNote.Atd = dto.Atd ?? transportNote.Atd;
+        transportNote.Ata = dto.Ata ?? transportNote.Ata;
+        transportNote.Rmk = dto.Rmk ?? transportNote.Rmk;
+        transportNote.Date = dto.Date ?? transportNote.Date;
+        transportNote.Pob = dto.Pob ?? transportNote.Pob;
+        _context.TransportNotes.Update(transportNote);
+        _context.SaveChanges();
+        return transportNote;
+    }
 }

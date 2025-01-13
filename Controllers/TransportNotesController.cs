@@ -25,12 +25,22 @@ public class TransportNotesController : ControllerBase
         return await _repo.GetAll();
     }
     
+    /// <summary>
+    /// Get the transport note with the given <paramref name="id"/>.
+    /// </summary>
+    /// <param name="id">The ID of the transport note to get.</param>
+    /// <returns>The transport note.</returns>
     [HttpGet("{id:int}")]
     public TransportNote? Get(int id)
     {
         return _repo.Get(id);
     }
     
+    /// <summary>
+    /// Create a new transport note.
+    /// </summary>
+    /// <param name="dto">The transport note data.</param>
+    /// <returns>The created transport note.</returns>
     [HttpPost]
     public IActionResult Create(CreateTransportNoteDto dto)
     {
@@ -45,6 +55,11 @@ public class TransportNotesController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Delete the transport note with the given <paramref name="id"/>.
+    /// </summary>
+    /// <param name="id">The ID of the transport note to delete.</param>
+    /// <returns>The deleted transport note.</returns>
     [HttpDelete("{id:int}")]
     public IActionResult Delete(int id)
     {
@@ -58,4 +73,26 @@ public class TransportNotesController : ControllerBase
           return BadRequest(e.Message);
         }
     }
+    
+    /// <summary>
+    /// Update a transport note with the given <paramref name="id"/>.
+    /// </summary>
+    /// <param name="id">The ID of the transport note to update.</param>
+    /// <param name="dto">The updated transport note data.</param>
+    /// <returns>The updated transport note.</returns>
+    [HttpPatch("{id:int}")]
+    public IActionResult Update(int id, UpdateTransportNoteDto dto)
+    {
+        try
+        {
+            var transportNote = _repo.Update(dto);
+            return Ok(transportNote);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+    
+    
 }
