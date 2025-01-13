@@ -65,6 +65,12 @@ public class TransportNotesRepo : ICrud<TransportNote>
         return transportNote;
     }
     
+    /// <summary>
+    /// Update a transport note with the given <paramref name="dto"/>.
+    /// </summary>
+    /// <param name="dto">The updated transport note data.</param>
+    /// <returns>The updated transport note.</returns>
+    /// <exception cref="Exception">If the transport note does not exist.</exception>
     public TransportNote? Update(UpdateTransportNoteDto dto)
     {
         var transportNote = _context.TransportNotes.Find(dto.Id);
